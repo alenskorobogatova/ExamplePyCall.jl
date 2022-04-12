@@ -1,7 +1,7 @@
 using Pkg
 
 ENV["PYTHON"] = "" 
-ENV["CONDA_JL_HOME"] = "/home/$(ENV["USERNAME"])/miniconda3/envs/julia"
+ENV["CONDA_JL_HOME"] = "/root/miniconda3/envs/julia"
 
 Pkg.add("PyCall")
 Pkg.build("PyCall")

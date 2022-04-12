@@ -1,8 +1,6 @@
 #https://github.com/aurelio-amerio/docker-julia-pycall
 FROM julia:latest
 
-LABEL maintainer="Alena S" 
-
 WORKDIR /tmp
 # install miniconda3
 RUN curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
@@ -18,18 +16,14 @@ RUN conda create --name julia python=3.9
 RUN conda install -n julia conda -y
 RUN conda update -n julia --all -y
 
-COPY install-pycall-docker.jl /tmp
-# install pycall
-RUN julia install-pycall-docker.jl
-# clear tmp folder
-
+RUN julia -e 'using Pkg; ENV["PYTHON"] = ""; ENV["CONDA_JL_HOME"] = "/root/miniconda3/envs/julia"; \
+    Pkg.add("PyCall"); Pkg.build("PyCall")'
 RUN rm -rf /tmp/*
 
 WORKDIR /root
 COPY . /root
 
 EXPOSE 8080
-
 
 RUN julia --project=@. -e 'import Pkg; Pkg.instantiate()'
 CMD julia --project=@. -e 'using ExamplePyCall; ExamplePyCall.my_opt()'

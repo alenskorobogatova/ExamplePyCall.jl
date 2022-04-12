@@ -1,0 +1,13 @@
+name = "ExamplePyCall"
+uuid = "ce0248cc-97c3-4b6b-ba48-79ff63785ac7"
+authors = ["Alena I. Skorobogatova <51082045+alenskorobogatova@users.noreply.github.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]

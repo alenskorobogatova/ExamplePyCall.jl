@@ -8,7 +8,9 @@ function __init__()
 end
 
 function my_opt()
-    scipy_opt.newton(x -> cos(x) - x, 1)
+    s = scipy_opt.newton(x -> cos(x) - x, 1)
+    println(s)
+    return s
 end
 
 end
